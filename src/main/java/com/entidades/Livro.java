@@ -1,24 +1,41 @@
 package com.entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 
+import javax.persistence.Basic;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "ACME_EMPLOYEE")
 @XmlRootElement
+@NamedQuery(name = "Livro.buscarTodos", query = "SELECT l FROM Livro l")
 public class Livro implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;	
+	@Id @Basic @NotNull
+	private Long id;
+	
 	private String nome;
+	
 	private int numeroPaginas;
+	
 	private double preco;
+	
+	@Temporal(TemporalType.DATE)
+	private Date publicacao;
+	
+	public Livro() {
+
+	}
 	
 	public Livro(String nome, int numeroPaginas, double preco) {
 		super();
@@ -50,6 +67,15 @@ public class Livro implements Serializable{
 	public void setPreco(double preco) {
 		this.preco = preco;
 	}
+	
+	public Date getPublicacao() {
+		return publicacao;
+	}
+
+	public void setPublicacao(Date publicacao) {
+		this.publicacao = publicacao;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

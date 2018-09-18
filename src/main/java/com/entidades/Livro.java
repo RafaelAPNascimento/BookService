@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-@Table(name = "ACME_EMPLOYEE")
+@Table(name = "LIVROS")
 @XmlRootElement
 @NamedQuery(name = "Livro.buscarTodos", query = "SELECT l FROM Livro l")
 public class Livro implements Serializable{
